@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <initializer_list>
 #include <stdexcept>
-//#include <bits/valarray_before.h>
+
 
 namespace aisdi
 {
@@ -127,7 +127,8 @@ namespace aisdi
 
             if (new_element->prev != nullptr) {
                 new_element->prev->next = new_element;
-            } else {
+            }
+            else {
                 root = new_element;
             }
             ++size;
@@ -159,7 +160,8 @@ namespace aisdi
             del_el->next->prev = del_el->prev;
             if (del_el->prev != nullptr) {
                 del_el->prev->next = del_el->next;
-            } else {
+            }
+            else {
                 root = del_el->next;
             }
             delete del_el;
@@ -172,7 +174,8 @@ namespace aisdi
             lst_el->prev = frst_el->prev;
             if (frst_el->prev != nullptr) {
                 frst_el->prev->next = lst_el;
-            } else {
+            }
+            else {
                 root = lst_el;
             }
             element_pointer next = frst_el;

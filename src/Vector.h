@@ -133,6 +133,14 @@ namespace aisdi {
             elements -= lastExcluded - firstIncluded;
         }
 
+        void fitToSize() {
+            auto new_arr = new Type[getSize()];
+            std::copy(begin(), end(), new_arr);
+            allocated_size = getSize();
+            delete[] data_array;
+            data_array = new_arr;
+        }
+
         iterator begin() {
             return iterator(data_array, *this);
         }
@@ -159,7 +167,7 @@ namespace aisdi {
 
     private:
         void reallocate() {
-            pointer new_arr = new Type[allocated_size * 2];
+            auto new_arr = new Type[allocated_size * 2];
             std::copy(begin(), end(), new_arr);
             allocated_size *= 2;
             delete[] data_array;

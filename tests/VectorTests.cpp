@@ -932,6 +932,23 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(GivenNonEmptyCollection_WhenErasingRange_ThenSizeI
   BOOST_CHECK_EQUAL(collection.getSize(), 2);
 }
 
+BOOST_AUTO_TEST_CASE_TEMPLATE(WhenFittedToSize_NumberOfDestroyedElementsEqualsElements,
+                              T,
+                              TestedTypes)
+{
+  {
+    LinearCollection<T> collection = { 23, 10, 20, 16 };
+
+    collection.append(5);
+
+    collection.fitToSize();
+
+    OperationCountingObject::resetCounters();
+  }
+
+  thenDestroyedObjectsCountWas<T>(5);
+}
+
 // ConstIterator is tested via Iterator methods.
 // If Iterator methods are to be changed, then new ConstIterator tests are required.
 
